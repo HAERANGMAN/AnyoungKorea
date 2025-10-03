@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국어 듣기 연습</title>
+    <style>
+        /* 모바일 화면을 위한 스타일 */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: center; 
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        #player-container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .button-group {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* 버튼 사이 간격 */
+        }
+        button {
+            font-size: 18px;
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #5865f2;
+            color: white;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #4752c4;
+        }
+        #scriptBtn {
+            background-color: #4caf50;
+        }
+        #scriptBtn:hover {
+            background-color: #45a049;
+        }
+        #scriptText {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 1.2em;
+            color: #333;
+            background-color: #eef1f5;
+            border-radius: 5px;
+            /* 처음에는 보이지 않게 설정 */
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="player-container">
+        <h1>한국어 듣기 연습</h1>
+        
+        <div class="button-group">
+            <button id="prevBtn">⏮️ 이전</button>
+            <button id="replayBtn">🔁 다시 듣기</button>
+            <button id="nextBtn">다음 ⏭️</button>
+        </div>
+
+        <button id="scriptBtn">📄 스크립트 보기</button>
+        <p id="scriptText"></p>
+    </div>
+
+    <script>
+        // 2단계 JavaScript 코드가 여기에 들어갑니다.
+    </script>
+
+</body>
+</html>
