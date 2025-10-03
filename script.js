@@ -1,7 +1,8 @@
 // =================== 1. 설정 ===================
 const githubId = "HAERANGMAN";
 const repoName = "AnyoungKorea";
-const folderPath = "mp3_1A_speaking"; // 스크린샷의 폴더 이름과 동일합니다.
+const folderPath = "mp3_1A_speaking";
+const branchName = "master"; // 'main'이 아닌 'master'로 수정된 부분
 
 // =================== 2. 오디오 파일 목록 ===================
 const audioFiles = [
@@ -44,7 +45,7 @@ const scriptText = document.getElementById('scriptText');
 
 function playAudio(index) {
     const fileName = audioFiles[index];
-    const audioUrl = `https://media.githubusercontent.com/media/${githubId}/${repoName}/main/${folderPath}/${fileName}`;
+    const audioUrl = `https://media.githubusercontent.com/media/${githubId}/${repoName}/${branchName}/${folderPath}/${fileName}`;
     
     audioPlayer.src = audioUrl;
     audioPlayer.play().catch(e => console.error("오디오 재생 중 오류 발생:", e));
