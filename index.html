@@ -1,84 +1,87 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국어 듣기 연습</title>
-    <style>
-        /* 모바일 화면을 위한 스타일 */
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            text-align: center; 
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
-        }
-        h1 {
-            color: #333;
-        }
-        #player-container {
-            max-width: 500px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .button-group {
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px; /* 버튼 사이 간격 */
-        }
-        button {
-            font-size: 18px;
-            padding: 15px 25px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            background-color: #5865f2;
-            color: white;
-            transition: background-color 0.2s;
-        }
-        button:hover {
-            background-color: #4752c4;
-        }
-        #scriptBtn {
-            background-color: #4caf50;
-        }
-        #scriptBtn:hover {
-            background-color: #45a049;
-        }
-        #scriptText {
-            margin-top: 20px;
-            padding: 15px;
-            font-size: 1.2em;
-            color: #333;
-            background-color: #eef1f5;
-            border-radius: 5px;
-            /* 처음에는 보이지 않게 설정 */
-            display: none; 
-        }
-    </style>
-</head>
-<body>
+// =================== 1. 설정 (사용자 정보 입력) ===================
+const githubId = "HAERANGMAN";      // 👈 본인 깃허브 아이디
+const repoName = "AnyoungKorea"; // 👈 깃허브 저장소 이름
+const folderPath = "mp3_1A_speaking"; // 👈 새로 추가된 오디오 폴더 이름!
 
-    <div id="player-container">
-        <h1>한국어 듣기 연습</h1>
-        
-        <div class="button-group">
-            <button id="prevBtn">⏮️ 이전</button>
-            <button id="replayBtn">🔁 다시 듣기</button>
-            <button id="nextBtn">다음 ⏭️</button>
-        </div>
+// =================== 2. 오디오 파일 목록 (🚨 가장 중요!) ===================
+// 깃허브 폴더에 있는 97개 파일 이름을 모두 정확하게 입력해주세요.
+// 스크린샷에 보이는 파일 목록을 예시로 몇 개 넣어두었습니다.
+const audioFiles = [
+    "01_이름이_뭐예요.mp3",
+    "02_어느나라_사람이에요.mp3",
+    "03_직업이_뭐예요.mp3",
+    "04_핸드폰이_있어요.mp3",
+    "05_전화번호가_뭐예요.mp3",
+    "06_핸드폰이_있어요.mp3", // 파일 이름이 04번과 같아 보이는데, 확인해보세요!
+    "07_핸드폰번호가_뭐예요.mp3",
+    "08_핸드폰이_어디에_있어요.mp3",
+    "09_칠판이_어디에_있어요.mp3",
+    "10_컴퓨터가_어디에_있어요.mp3",
+    "11_무엇을_좋아해요.mp3",
+    "12_무슨_음식을_좋아해요.mp3",
+    "13_오늘내일주말이번주말에_무엇을_해요.mp3",
+    // 여기에 나머지 파일 이름들을 계속 추가해주세요!
+    // ...
+    // ... 마지막 파일까지 ...
+];
 
-        <button id="scriptBtn">📄 스크립트 보기</button>
-        <p id="scriptText"></p>
-    </div>
+// =================== 3. 코드 실행 부분 (여기는 수정 안 해도 돼요) ===================
+let currentIndex = 0;
+const audioPlayer = new Audio();
 
-    <script>
-        // 2단계 JavaScript 코드가 여기에 들어갑니다.
-    </script>
+const prevButton = document.getElementById('prevBtn');
+const replayButton = document.getElementById('replayBtn');
+const nextButton = document.getElementById('nextBtn');
+const scriptButton = document.getElementById('scriptBtn');
+const scriptText = document.getElementById('scriptText');
 
-</body>
-</html>
+// 오디오를 재생하는 핵심 함수
+function playAudio(index) {
+    const fileName = audioFiles[index];
+    // 👇 여기가 바뀌었어요! 폴더 경로(folderPath)가 주소에 추가되었습니다.
+    const audioUrl = `https://media.githubusercontent.com/media/${githubId}/${repoName}/main/${folderPath}/${fileName}`;
+    
+    audioPlayer.src = audioUrl;
+    audioPlayer.play();
+
+    scriptText.style.display = 'none';
+    console.log(`재생 중: ${fileName}`);
+}
+
+// '이전' 버튼 클릭
+prevButton.addEventListener('click', () => {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = audioFiles.length - 1; 
+    }
+    playAudio(currentIndex);
+});
+
+// '다음' 버튼 클릭
+nextButton.addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= audioFiles.length) {
+        currentIndex = 0; 
+    }
+    playAudio(currentIndex);
+});
+
+// '다시 듣기' 버튼 클릭
+replayButton.addEventListener('click', () => {
+    audioPlayer.currentTime = 0;
+    audioPlayer.play();
+});
+
+// '스크립트 보기' 버튼 클릭
+scriptButton.addEventListener('click', () => {
+    let currentFile = audioFiles[currentIndex];
+    let script = currentFile.replace('.mp3', '');
+    script = script.replace(/^\d+_/, '');
+    script = script.replace(/_/g, ' ');
+
+    scriptText.innerText = script;
+    scriptText.style.display = scriptText.style.display === 'block' ? 'none' : 'block';
+});
+
+// 페이지가 처음 열릴 때 첫 번째 파일을 재생
+playAudio(currentIndex);
