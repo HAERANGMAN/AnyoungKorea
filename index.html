@@ -77,13 +77,14 @@
     </div>
 
     <script>
-        // =================== 1. 설정 (사용자 정보 입력) ===================
-const githubId = "HAERANGMAN";      // 👈 본인 깃허브 아이디
-const repoName = "AnyoungKorea"; // 👈 깃허브 저장소 이름
-const folderPath = "mp3_1A_speaking"; // 👈 오디오 폴더 이름
+       // =================== 1. 설정 (사용자 정보 입력) ===================
+const githubId = "HAERANGMAN";
+const repoName = "AnyoungKorea";
+const folderPath = "mp3_1A_speaking"; // 👈 이 변수 이름이 정확해야 합니다.
 
 // =================== 2. 오디오 파일 목록 (96개 전체 입력 완료) ===================
 const audioFiles = [
+    // ... (이전과 동일하게 97개 파일 목록) ...
     "01_이름이_뭐예요.mp3",
     "02_어느나라_사람이에요.mp3",
     "03_직업이_뭐예요.mp3",
@@ -170,78 +171,6 @@ const audioFiles = [
     "84_지난주말에_어디에_갔어요.mp3",
     "85_누구하고_갔어요.mp3",
     "86_거기에서_뭘_했어요.mp3",
-    "87_주말에_어디에_갔어요.mp3",
-    "88_거기에서_무엇을_했어요.mp3",
-    "89_어땠어요.mp3",
-    "90_주말에_어디에_가고_싶어요.mp3",
-    "91_누구하고_가고_싶어요.mp3",
-    "92_방학에_어디에_가고_싶어요.mp3",
-    "93_누구하고_가고_싶어요.mp3",
-    "94_무엇을_하고_싶어요.mp3",
-    "95_이번_주말에_약속이_있어요.mp3",
-    "96_어디에_가요.mp3",
-    "97_무엇을_하고_싶어요.mp3"
-];
-
-// =================== 3. 코드 실행 부분 (여기는 수정 안 해도 돼요) ===================
-let currentIndex = 0;
-const audioPlayer = new Audio();
-
-const prevButton = document.getElementById('prevBtn');
-const replayButton = document.getElementById('replayBtn');
-const nextButton = document.getElementById('nextBtn');
-const scriptButton = document.getElementById('scriptBtn');
-const scriptText = document.getElementById('scriptText');
-
-// 오디오를 재생하는 핵심 함수
-function playAudio(index) {
-    const fileName = audioFiles[index];
-    const audioUrl = `https://media.githubusercontent.com/media/${githubId}/${repoName}/main/${folderPath}/${fileName}`;
-    
-    audioPlayer.src = audioUrl;
-    audioPlayer.play();
-
-    scriptText.style.display = 'none';
-    console.log(`재생 중: ${fileName}`);
-}
-
-// '이전' 버튼 클릭
-prevButton.addEventListener('click', () => {
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = audioFiles.length - 1; 
-    }
-    playAudio(currentIndex);
-});
-
-// '다음' 버튼 클릭
-nextButton.addEventListener('click', () => {
-    currentIndex++;
-    if (currentIndex >= audioFiles.length) {
-        currentIndex = 0; 
-    }
-    playAudio(currentIndex);
-});
-
-// '다시 듣기' 버튼 클릭
-replayButton.addEventListener('click', () => {
-    audioPlayer.currentTime = 0;
-    audioPlayer.play();
-});
-
-// '스크립트 보기' 버튼 클릭
-scriptButton.addEventListener('click', () => {
-    let currentFile = audioFiles[currentIndex];
-    let script = currentFile.replace('.mp3', '');
-    script = script.replace(/^\d+_/, '');
-    script = script.replace(/_/g, ' ');
-
-    scriptText.innerText = script;
-    scriptText.style.display = scriptText.style.display === 'block' ? 'none' : 'block';
-});
-
-// 페이지가 처음 열릴 때 첫 번째 파일을 재생
-playAudio(currentIndex);
     </script>
 
 </body>
