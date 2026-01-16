@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital Card</title>
+    <title>AnyoungKorea Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
 
     <style>
-        /* --- [1] 디자인 스타일 (Vibe) --- */
+        /* --- [1] 디자인 스타일 --- */
         :root {
-            --bg-color: #121212;       /* 배경: 아주 진한 다크 그레이 */
-            --card-bg: #1E1E1E;        /* 카드 배경 */
-            --text-main: #FFFFFF;      /* 메인 텍스트 */
-            --text-sub: #A0A0A0;       /* 보조 텍스트 */
-            --accent: #FF3B30;         /* 포인트 컬러 (유튜브 레드 느낌) */
+            --bg-color: #121212;
+            --card-bg: #1E1E1E;
+            --text-main: #FFFFFF;
+            --text-sub: #A0A0A0;
+            --accent: #FF3B30;
         }
 
         body {
@@ -27,10 +27,9 @@
             justify-content: center;
         }
 
-        /* 모바일 컨테이너 (최대 너비 제한) */
         .container {
             width: 100%;
-            max-width: 480px; /* 스마트폰 너비 정도 */
+            max-width: 480px;
             padding: 40px 20px;
             box-sizing: border-box;
             text-align: center;
@@ -38,8 +37,8 @@
 
         /* --- [2] 프로필 섹션 --- */
         .profile-img {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--accent);
@@ -47,51 +46,62 @@
         }
 
         .name {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             margin: 0 0 5px 0;
         }
 
         .bio {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-sub);
             margin-bottom: 30px;
-            line-height: 1.5;
+            line-height: 1.6;
+            word-break: keep-all; /* 한글 줄바꿈 최적화 */
         }
 
-        /* --- [3] 소셜 링크 버튼 --- */
+        /* --- [3] 소셜 링크 버튼 (2x2 그리드 수정됨) --- */
         .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2열 배치 */
+            gap: 15px; /* 버튼 사이 간격 */
             margin-bottom: 40px;
         }
 
         .social-btn {
-            width: 50px;
-            height: 50px;
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
+            padding: 20px 0; /* 터치 영역 확보를 위해 높이 증가 */
             display: flex;
+            flex-direction: column; /* 아이콘 위, 텍스트 아래 */
             align-items: center;
             justify-content: center;
             color: var(--text-main);
-            font-size: 24px;
             text-decoration: none;
             transition: transform 0.2s, background 0.2s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 1px solid #333;
         }
 
-        .social-btn:hover {
-            transform: translateY(-3px);
-            background-color: #333;
+        .social-btn i {
+            font-size: 32px; /* 아이콘 크기 확대 */
+            margin-bottom: 8px;
         }
 
-        /* 각 브랜드별 호버 컬러 (선택사항) */
-        .social-btn.yt:hover { color: #FF0000; }
-        .social-btn.insta:hover { color: #E1306C; }
-        .social-btn.tiktok:hover { color: #00f2ea; }
-        .social-btn.fb:hover { color: #1877F2; }
+        .social-btn span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .social-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 브랜드 컬러 호버 효과 */
+        .social-btn.yt:hover { background-color: #FF0000; border-color: #FF0000; }
+        .social-btn.insta:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: transparent; }
+        .social-btn.tiktok:hover { background-color: #00f2ea; color: #000; border-color: #00f2ea; }
+        .social-btn.fb:hover { background-color: #1877F2; border-color: #1877F2; }
+
 
         /* --- [4] 미디어 섹션 --- */
         .section-title {
@@ -101,9 +111,20 @@
             text-align: left;
             border-left: 4px solid var(--accent);
             padding-left: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .latest-badge {
+            font-size: 12px;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: normal;
         }
 
-        /* 비디오 컨테이너 스타일 */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -121,67 +142,88 @@
             display: block;
         }
 
-        /* 16:9 비율 (유튜브 롱폼) */
-        .aspect-16-9 {
-            aspect-ratio: 16 / 9;
-        }
-
-        /* 9:16 비율 (쇼츠/릴스/틱톡) */
-        .shorts-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 2열 배치 */
-            gap: 15px;
-        }
-
-        .aspect-9-16 {
-            aspect-ratio: 9 / 16;
-        }
-
-        /* 하단 푸터 */
-        .footer {
-            margin-top: 50px;
-            font-size: 12px;
-            color: #555;
-        }
+        .aspect-16-9 { aspect-ratio: 16 / 9; }
+        .footer { margin-top: 50px; font-size: 12px; color: #555; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="https://via.placeholder.com/150/333333/FFFFFF?text=Profile" alt="프로필 사진" class="profile-img">
+        <img src="https://via.placeholder.com/150/333333/FFFFFF?text=Anyoung" alt="프로필 사진" class="profile-img">
         
-        <h1 class="name">이름 (Your Name)</h1>
+        <h1 class="name">Anyoung Korea</h1>
         <p class="bio">
-            여기에 간단한 소개글을 적어주세요.<br>
-            유튜브와 틱톡에서 활동하는 크리에이터입니다.
+            안녕하세요, 태국과 한국을 잇는 크리에이터<br>
+            Anyoung Korea (정해랑) 입니다.<br>
+            아래 버튼을 눌러 소통해주세요.
         </p>
 
         <div class="social-links">
-            <a href="#" class="social-btn insta"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
-            <a href="#" class="social-btn yt"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.youtube.com/@anyoungkorea" target="_blank" class="social-btn yt">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+            </a>
+            <a href="https://www.instagram.com/anyoungkorea" target="_blank" class="social-btn insta">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/anyoungkorea" target="_blank" class="social-btn fb">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </a>
+            <a href="https://www.tiktok.com/@anyoungkorea" target="_blank" class="social-btn tiktok">
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+            </a>
         </div>
 
-        <div class="section-title">Featured Video</div>
+        <div class="section-title">
+            최신 유튜브 영상
+            <span class="latest-badge">New</span>
+        </div>
         <div class="video-wrapper aspect-16-9">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder" title="YouTube video" allowfullscreen></iframe>
-        </div>
-
-        <div class="section-title">Shorts & Reels</div>
-        <div class="shorts-grid">
-            <div class="video-wrapper aspect-9-16">
-                <iframe src="https://www.youtube.com/embed/shorts_video_id_1" title="Shorts 1" allowfullscreen></iframe>
-            </div>
-            <div class="video-wrapper aspect-9-16">
-                <iframe src="https://www.youtube.com/embed/shorts_video_id_2" title="Shorts 2" allowfullscreen></iframe>
-            </div>
+            <iframe id="latest-video" src="" title="Latest YouTube Video" allowfullscreen></iframe>
         </div>
 
         <div class="footer">
             © 2026 AnyoungKorea. All rights reserved.
         </div>
     </div>
+
+    <script>
+        // 1. 여기에 본인의 유튜브 채널 ID를 입력하세요.
+        // 핸들(@anyoungkorea)이 아니라 'UC'로 시작하는 ID가 필요합니다.
+        // 확인 방법: 유튜브 채널 접속 -> 페이지 소스 보기 -> 'channelId' 검색
+        const YOUTUBE_CHANNEL_ID = 'UCxxxxxxxxxxxxxxx'; 
+
+        async function fetchLatestVideo() {
+            // API 키 없이 RSS 피드를 JSON으로 변환하여 가져오는 방식입니다.
+            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.items && data.items.length > 0) {
+                    const latestVideo = data.items[0]; // 가장 첫 번째 영상(최신)
+                    const videoId = latestVideo.link.split('v=')[1]; // URL에서 ID 추출
+                    
+                    // iframe 주소 업데이트
+                    const iframe = document.getElementById('latest-video');
+                    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                } else {
+                    console.log('최신 영상을 찾을 수 없습니다.');
+                }
+            } catch (error) {
+                console.error('유튜브 연동 실패:', error);
+                // 실패 시 기본 영상(홍보 영상 등)을 보여주도록 설정 가능
+            }
+        }
+
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', fetchLatestVideo);
+    </script>
 
 </body>
 </html>
