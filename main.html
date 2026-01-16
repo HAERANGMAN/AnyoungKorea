@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+
+    <style>
+        /* --- [1] 디자인 스타일 (Vibe) --- */
+        :root {
+            --bg-color: #121212;       /* 배경: 아주 진한 다크 그레이 */
+            --card-bg: #1E1E1E;        /* 카드 배경 */
+            --text-main: #FFFFFF;      /* 메인 텍스트 */
+            --text-sub: #A0A0A0;       /* 보조 텍스트 */
+            --accent: #FF3B30;         /* 포인트 컬러 (유튜브 레드 느낌) */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 모바일 컨테이너 (최대 너비 제한) */
+        .container {
+            width: 100%;
+            max-width: 480px; /* 스마트폰 너비 정도 */
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* --- [2] 프로필 섹션 --- */
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .bio {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* --- [3] 소셜 링크 버튼 --- */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 24px;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            background-color: #333;
+        }
+
+        /* 각 브랜드별 호버 컬러 (선택사항) */
+        .social-btn.yt:hover { color: #FF0000; }
+        .social-btn.insta:hover { color: #E1306C; }
+        .social-btn.tiktok:hover { color: #00f2ea; }
+        .social-btn.fb:hover { color: #1877F2; }
+
+        /* --- [4] 미디어 섹션 --- */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: left;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        /* 비디오 컨테이너 스타일 */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* 16:9 비율 (유튜브 롱폼) */
+        .aspect-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* 9:16 비율 (쇼츠/릴스/틱톡) */
+        .shorts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2열 배치 */
+            gap: 15px;
+        }
+
+        .aspect-9-16 {
+            aspect-ratio: 9 / 16;
+        }
+
+        /* 하단 푸터 */
+        .footer {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://via.placeholder.com/150/333333/FFFFFF?text=Profile" alt="프로필 사진" class="profile-img">
+        
+        <h1 class="name">이름 (Your Name)</h1>
+        <p class="bio">
+            여기에 간단한 소개글을 적어주세요.<br>
+            유튜브와 틱톡에서 활동하는 크리에이터입니다.
+        </p>
+
+        <div class="social-links">
+            <a href="#" class="social-btn insta"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-btn yt"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="section-title">Featured Video</div>
+        <div class="video-wrapper aspect-16-9">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder" title="YouTube video" allowfullscreen></iframe>
+        </div>
+
+        <div class="section-title">Shorts & Reels</div>
+        <div class="shorts-grid">
+            <div class="video-wrapper aspect-9-16">
+                <iframe src="https://www.youtube.com/embed/shorts_video_id_1" title="Shorts 1" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper aspect-9-16">
+                <iframe src="https://www.youtube.com/embed/shorts_video_id_2" title="Shorts 2" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 AnyoungKorea. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>
