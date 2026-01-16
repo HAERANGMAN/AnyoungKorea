@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anyoung Korea - 안녕하세요</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f4f4f9; /* 기존 듣기 페이지와 톤앤매너 유지 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        p.subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block; /* a 태그를 블록으로 */
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #5865f2; /* 듣기 페이지 버튼색과 깔맞춤 */
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #888;
+            display: block;
+        }
+
+        /* 프로필 카드 스타일 (다크 테마 느낌) */
+        .card.profile {
+            background: #1E1E1E;
+            color: white;
+        }
+        .card.profile .card-title {
+            color: #FF3B30; /* 명함 페이지 포인트 컬러 */
+        }
+        .card.profile .card-desc {
+            color: #A0A0A0;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Anyoung Korea</h1>
+        <p class="subtitle">원하는 메뉴를 선택해주세요</p>
+
+        <a href="sejong.html" class="card">
+            <span class="icon">🎧</span>
+            <span class="card-title">듣기 연습 (Listening)</span>
+            <span class="card-desc">세종학당 한국어 듣기 평가</span>
+        </a>
+
+        <a href="main.html" class="card profile">
+            <span class="icon">😎</span>
+            <span class="card-title">선생님 프로필 (Profile)</span>
+            <span class="card-desc">SNS, 유튜브, 틱톡 바로가기</span>
+        </a>
+
+        <footer>
+            © Anyoung Korea
+        </footer>
+    </div>
+
+</body>
+</html>
