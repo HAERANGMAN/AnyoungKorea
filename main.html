@@ -30,49 +30,49 @@
         .container {
             width: 100%;
             max-width: 480px;
-            padding: 40px 20px;
+            padding: 25px 20px; /* 위아래 패딩 감소 (기존 40px) */
             box-sizing: border-box;
             text-align: center;
         }
 
-        /* --- [2] 프로필 섹션 --- */
+        /* --- [2] 프로필 섹션 (수정됨) --- */
         .profile-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
+            width: 100px; /* 크기 소폭 조정 */
+            height: 100px;
+            border-radius: 22px; /* 원형(50%)에서 둥근 사각형으로 변경 */
             object-fit: cover;
-            border: 3px solid var(--accent);
-            margin-bottom: 15px;
+            border: 2px solid var(--accent); /* 테두리 두께 최적화 */
+            margin-bottom: 12px; /* 아래 간격 감소 */
         }
 
         .name {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            margin: 0 0 5px 0;
+            margin: 0 0 2px 0; /* 글자 간격 밀착 */
         }
 
         .bio {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-sub);
-            margin-bottom: 30px;
-            line-height: 1.6;
-            word-break: keep-all; /* 한글 줄바꿈 최적화 */
+            margin-bottom: 20px; /* 하단 간격 감소 (기존 30px) */
+            line-height: 1.4; /* 줄 간격 밀착 (기존 1.6) */
+            word-break: keep-all;
         }
 
-        /* --- [3] 소셜 링크 버튼 (2x2 그리드 수정됨) --- */
+        /* --- [3] 소셜 링크 버튼 --- */
         .social-links {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2열 배치 */
-            gap: 15px; /* 버튼 사이 간격 */
-            margin-bottom: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px; /* 간격 소폭 감소 */
+            margin-bottom: 25px; /* 하단 간격 감소 (기존 40px) */
         }
 
         .social-btn {
             background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px 0; /* 터치 영역 확보를 위해 높이 증가 */
+            border-radius: 14px;
+            padding: 15px 0; /* 버튼 높이 최적화 (기존 20px) */
             display: flex;
-            flex-direction: column; /* 아이콘 위, 텍스트 아래 */
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: var(--text-main);
@@ -83,18 +83,16 @@
         }
 
         .social-btn i {
-            font-size: 32px; /* 아이콘 크기 확대 */
-            margin-bottom: 8px;
+            font-size: 28px; /* 아이콘 크기 소폭 조정 */
+            margin-bottom: 6px;
         }
 
         .social-btn span {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
         }
 
-        .social-btn:active {
-            transform: scale(0.98);
-        }
+        .social-btn:active { transform: scale(0.98); }
 
         /* 브랜드 컬러 호버 효과 */
         .social-btn.yt:hover { background-color: #FF0000; border-color: #FF0000; }
@@ -105,9 +103,9 @@
 
         /* --- [4] 미디어 섹션 --- */
         .section-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* 간격 감소 */
             text-align: left;
             border-left: 4px solid var(--accent);
             padding-left: 10px;
@@ -117,12 +115,11 @@
         }
         
         .latest-badge {
-            font-size: 12px;
+            font-size: 11px;
             background: var(--accent);
             color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: normal;
+            padding: 1px 7px;
+            border-radius: 8px;
         }
 
         .video-wrapper {
@@ -131,7 +128,7 @@
             background: #000;
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* 간격 감소 */
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
@@ -143,7 +140,7 @@
         }
 
         .aspect-16-9 { aspect-ratio: 16 / 9; }
-        .footer { margin-top: 50px; font-size: 12px; color: #555; }
+        .footer { margin-top: 30px; font-size: 11px; color: #555; }
     </style>
 </head>
 <body>
@@ -179,55 +176,20 @@
 
         <div class="section-title">
             วิดีโอยูทูบล่าสุด🎥✨
-            <span class="latest-badge">New</span>
+            <span class="latest-badge">HOT</span>
         </div>
         <div class="video-wrapper aspect-16-9">
-            <iframe id="latest-video" src="" title="Latest YouTube Video" allowfullscreen></iframe>
+            <iframe id="latest-video" 
+                    src="https://www.youtube.com/embed/iZnmf73_Yys" 
+                    title="AnyoungKorea Featured Video" 
+                    allowfullscreen>
+            </iframe>
         </div>
 
         <div class="footer">
             © 2026 AnyoungKorea. All rights reserved.
         </div>
-    </div>
-    <script>
-        const YOUTUBE_CHANNEL_ID = 'UCu3gIesmLDgmehHL0iBVSmw'; 
-        const DEFAULT_VIDEO_ID = 'iZnmf73_Yys'; // 로드 실패 시 보여줄 기본 영상 ID
+    </div>    
     
-        async function fetchLatestVideo() {
-            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
-            // rss2json 대신 원본 XML을 가져오는 다른 프록시(allorigins) 사용
-            const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-            const iframe = document.getElementById('latest-video');
-    
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error('Network response was not ok');
-                
-                const data = await response.json();
-                const xmlString = data.contents; // 원본 XML 데이터
-    
-                // XML 파서 실행
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-                const entries = xmlDoc.getElementsByTagName("entry");
-    
-                if (entries.length > 0) {
-                    // 유튜브 RSS의 <yt:videoId> 태그에서 직접 ID 추출
-                    const latestVideoId = xmlDoc.getElementsByTagName("yt:videoId")[0].textContent;
-                    console.log("최신 영상 ID 추출 성공:", latestVideoId);
-                    iframe.src = `https://www.youtube.com/embed/${latestVideoId}`;
-                } else {
-                    throw new Error('No videos found in feed');
-                }
-    
-            } catch (error) {
-                console.error('유튜브 연동 실패 (프록시 방식):', error);
-                // 실패 시 채널의 대표 영상으로 설정
-                iframe.src = `https://www.youtube.com/embed/${DEFAULT_VIDEO_ID}`;
-            }
-        }
-    
-        document.addEventListener('DOMContentLoaded', fetchLatestVideo);
-        </script>    
-    </body>
+</body>
 </html>
