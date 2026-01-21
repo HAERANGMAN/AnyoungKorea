@@ -194,43 +194,36 @@
     const YOUTUBE_CHANNEL_ID = 'UCu3gIesmLDgmehHL0iBVSmw'; 
 
     async function fetchLatestVideo() {
-        // rss2json 서비스는 무료 할당량 제한이 있어 실패할 수 있습니다.
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
-
-            console.log("받아온 데이터 확인:", data); // 디버깅용
-
-            if (data.status === 'ok' && data.items && data.items.length > 0) {
+    
+            if (data.items && data.items.length > 0) {
                 const latestVideo = data.items[0];
                 let videoId = '';
-
-                // 주소 형식에 따른 ID 추출 로직 개선 (일반영상 & 쇼츠 대응)
+    
+                // 개선된 ID 추출 로직
                 const link = latestVideo.link;
                 if (link.includes('v=')) {
+                    // 일반 영상: & 이전까지만 잘라냄
                     videoId = link.split('v=')[1].split('&')[0];
                 } else if (link.includes('shorts/')) {
+                    // 쇼츠 영상 대응
                     videoId = link.split('shorts/')[1].split('?')[0];
-                } else {
-                    // 드문 경우지만 guid에서 추출
-                    videoId = latestVideo.guid.split(':').pop();
                 }
-
+    
                 if (videoId) {
                     const iframe = document.getElementById('latest-video');
                     iframe.src = `https://www.youtube.com/embed/${videoId}`;
-                    console.log("영상 로드 완료 ID:", videoId);
                 }
             } else {
-                console.log('데이터는 가져왔으나 영상 목록이 비어있습니다. (할당량 초과 가능성)');
-                showFallback();
+                console.log('최신 유튜브 영상이 없대');
             }
         } catch (error) {
             console.error('유튜브 연동 실패:', error);
-            showFallback();
         }
     }
 
